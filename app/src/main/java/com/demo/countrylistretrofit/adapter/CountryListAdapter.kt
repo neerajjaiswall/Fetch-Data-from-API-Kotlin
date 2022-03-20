@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import androidx.recyclerview.widget.RecyclerView
 import com.demo.countrylistretrofit.R
 import com.demo.countrylistretrofit.data.CountryModel
@@ -16,7 +17,7 @@ class CountryListAdapter(val activity: Activity): RecyclerView.Adapter<CountryLi
     private var countryList: List<CountryModel>? = null
 
 
-    fun setCountryList(countryList: List<CountryModel>?) {
+    fun setCountryList(countryList: ArrayList<CountryModel>?) {
         this.countryList = countryList
     }
 
@@ -45,12 +46,14 @@ class CountryListAdapter(val activity: Activity): RecyclerView.Adapter<CountryLi
         val tvRegion = view.tvRegion
 
         fun bind(data: CountryModel, activity: Activity) {
-            tvName.text = data.name +"(" + data.status+")"
-            tvCapital.text = "Species: "+data.species
+            tvName.text = data.name +" (" + data.species+")"
+            tvCapital.text = "Status: "+data.status
             tvRegion.text = "Gender: "+data.gender
 
-            GlideToVectorYou.justLoadImage(activity, Uri.parse(data.image), flagImage)
-
+//            GlideToVectorYou.justLoadImage(activity, Uri.parse(data.image), flagImage)
+            Glide.with(flagImage)
+                .load(data.image)
+                .into(flagImage)
         }
     }
 }

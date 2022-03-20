@@ -7,7 +7,7 @@ class RetroInstance {
 
 
     companion object {
-        val BASE_URL = "https://rickandmortyapi.com/api/"
+        val BASE_URL = "https://rickandmortyapi.com/"
 
         fun getRetroInstance(): Retrofit {
             return Retrofit.Builder()
